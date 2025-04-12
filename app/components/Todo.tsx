@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 interface Todo {
   id: number;
-  title: string;
+  name: string;
 }
 
 export default function Todo() {
@@ -30,7 +30,7 @@ export default function Todo() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title: newTodo }),
+      body: JSON.stringify({ name: newTodo }),
     });
 
     setNewTodo('');
@@ -70,7 +70,7 @@ export default function Todo() {
             key={todo.id}
             className="flex justify-between items-center border-b py-2"
           >
-            <span>{todo.title}</span>
+            <span>{todo.name}</span>
             <button
               onClick={() => deleteTodo(todo.id)}
               className="text-red-500 hover:text-red-700"
