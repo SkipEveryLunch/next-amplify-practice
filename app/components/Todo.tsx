@@ -12,7 +12,7 @@ export default function Todo() {
   const [newTodo, setNewTodo] = useState('');
 
   const fetchTodos = async () => {
-    const response = await fetch('http://localhost:3000/todos');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/todos`);
     const data = await response.json();
     setTodos(data);
   };
@@ -25,7 +25,7 @@ export default function Todo() {
     e.preventDefault();
     if (!newTodo.trim()) return;
 
-    await fetch('http://localhost:3000/todos', {
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/todos`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function Todo() {
   };
 
   const deleteTodo = async (id: number) => {
-    await fetch(`http://localhost:3000/todos/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/todos/${id}`, {
       method: 'DELETE',
     });
     fetchTodos();
